@@ -183,17 +183,17 @@ func main() {
 	logger := log.New(os.Stderr, "", log.Lmsgprefix)
 
 	if len(os.Args) != 2 {
-		// logger.Fatalln(usage())
+		logger.Fatalln(usage())
 	}
 
 	f, err := os.Open(os.Args[1])
 	if err != nil {
-		// logger.Fatalf("ERROR: could not open file %q: %v\n", os.Args[1], err)
+		logger.Fatalf("ERROR: could not open file %q: %v\n", os.Args[1], err)
 	}
 
 	zr, err := gzip.NewReader(f)
 	if err != nil {
-		// logger.Fatalf("ERROR: could not create gzip reader: %v\n", err)
+		logger.Fatalf("ERROR: could not create gzip reader: %v\n", err)
 	}
 
 	lr := io.LimitReader(zr, 5*10e6)
@@ -206,7 +206,7 @@ func main() {
 			body := decodeBody(logger, val)
 			err := encoder.Encode(body)
 			if err != nil {
-				// logger.Printf("ERROR: could not marshal JSON: %v\n", err)
+				logger.Printf("ERROR: could not marshal JSON: %v\n", err)
 			}
 		}
 	}
