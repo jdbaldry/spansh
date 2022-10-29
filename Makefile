@@ -14,3 +14,7 @@ help:
 galaxy%.json.gz: ## Download galaxy files.
 galaxy%.json.gz:
 	curl -O https://downloads.spansh.co.uk/$(@)
+
+spansh: ## Build the spansh binary.
+spansh: go.mod go.sum main.go
+	go build ./

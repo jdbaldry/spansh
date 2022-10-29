@@ -1,2 +1,4 @@
 /galaxy*.json
 /galaxy*.json.gz
+/flake-profile*
+/spansh
